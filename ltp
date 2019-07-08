@@ -1,0 +1,9 @@
+infile=$1
+outfile=$2
+if [ $# -lt 2 ]; then
+	echo LessonPlan.md to PPTX
+	echo Usage: "ltp <infile> <outfile>"
+	exit 0
+fi
+lessonToPowerpoint $infile > /tmp/a.jnk
+pandoc -f markdown -t pptx /tmp/a.jnk -o $outfile --reference-doc=/Users/greg/bin/ltpTemplate.pptx
