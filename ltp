@@ -6,6 +6,6 @@ if [ $# -lt 2 ]; then
 	exit 0
 fi
 sed -e 's/^ *<summary><strong>/### /' $infile > ./a.jnk
-sed -e 's/^ *(\!\[.*)/xxxxxxxx/' ./a.jnk > ./aa.jnk
+sed -E 's/^ *(\!\[.*\))/\1{width=256}/' ./a.jnk > ./aa.jnk
 lessonToPowerpoint ./aa.jnk > ./b.jnk
 pandoc --standalone -f markdown -t pptx ./b.jnk -o $outfile --reference-doc=/Users/greg/bin/ltpTemplate.pptx
