@@ -5,5 +5,6 @@ if [ $# -lt 2 ]; then
 	echo Usage: "ltp <infile> <outfile>"
 	exit 0
 fi
-lessonToPowerpoint $infile > /tmp/a.jnk
-pandoc -f markdown -t pptx /tmp/a.jnk -o $outfile --reference-doc=/Users/greg/bin/ltpTemplate.pptx
+sed -e 's/^ *<summary><strong>/### /' $infile > /tmp/a.jnk
+lessonToPowerpoint /tmp/a.jnk > /tmp/b.jnk
+pandoc -f markdown -t pptx /tmp/b.jnk -o $outfile --reference-doc=/Users/greg/bin/ltpTemplate.pptx
